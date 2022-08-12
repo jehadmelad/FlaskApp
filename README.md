@@ -1,5 +1,10 @@
 # Simple Task tracker.
-
+## The application is set with Authentication and API features.
+* Log-in.
+* Log-out.
+* Signe-in.
+* APIs
+* ALChemy database.
 
 ## Requirements:
 
@@ -7,7 +12,7 @@
 
 ## Run the application.
 
-It is a good habit to run the application within python virtual environment. By following the next structure will be able to do so.
+It is a good habit to run the application within python virtual environment. By following the next structure you will be able to do so.
 
 
 install python virtual environment 'virtualenv' using pip:
@@ -15,14 +20,18 @@ install python virtual environment 'virtualenv' using pip:
 pip3 install virtualenv 
 ```
 
-Go to the folder that you would like to work in, then create an environment:
+Go to the folder that you would like to work in (In this case: /FlaskApp), then create an virtual environment by:
 ```
-virtualenv <name-you-would-like-goes-here>
+virtualenv <name-you-would-like>
 ```
 
 Now, try to install the required packeage for this application.
 ```
-pip3 install -r requiremnets.txt
+c:/users/hp/documents/folder/FlaskApp/:~ pip3 install -r requiremnets.txt
 ```
+
+Finally, open your browser and write the `localhost:5001` or your `ip addres:5001`.
+
+
 
 
