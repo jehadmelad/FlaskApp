@@ -1,0 +1,163 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    overflow: none;
+}
+
+body {
+
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+/* Header */
+
+header {
+    margin: 1em;
+    text-align-last: center;
+    font-family: seri;
+    position: static;
+    border-bottom: 0.3px solid;
+}
+
+.btn-info {
+    background-color: #59CE8F !important;
+    border-color: #59CE8F !important;
+}
+
+/* ########################################################    START OF   ##########################*/
+/* #################################################### the content of the container  ##################*/
+
+.title {
+    border-bottom: 0.4px solid;
+    color: #0077B6;
+    margin-top: 2em;
+    text-align-last: start;
+
+}
+
+.tasks-form {
+    text-align: -webkit-center;
+}
+
+.content {
+    text-align: -webkit-center;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+tr td a {
+    margin-bottom: 15px;
+
+}
+
+td {
+    vertical-align: middle;
+}
+
+td.actions {
+    display: flex;
+    justify-content: center;
+
+}
+
+td.actions a {
+    margin: 2px;
+}
+
+/* 
+.custom-toast{
+    position: absolute;
+    bottom: 0px;
+    right: 1%;
+    width: 21%;
+    font-size: initial;
+    height: 10%;
+} */
+.custom-toast h1 {
+    font-size: initial;
+}
+
+tr {
+    box-shadow: 0px 0px 5px 0px #6b6b6b4f;
+    border-radius: 39px;
+}
+
+td {
+    border-block: none !important;
+
+}
+
+th {
+    border-block: none !important;
+
+}
+
+
+/* ################################### priority & Status colores ########################## */
+
+.Medium {
+    background-color: #F6BD60;
+    color: rgb(13, 47, 76);
+
+}
+
+.High {
+    background-color: #D62828;
+    color: aliceblue;
+
+}
+
+.Low {
+    background-color: #0077B6;
+    color: aliceblue;
+
+
+}
+
+.Inprogress {
+    color: #125B50;
+}
+
+.Pendding {
+    color: #CA6702;
+
+}
+
+.Issue {
+    color: #AE2012;
+
+}
+
+.Complete {
+    color: #0A9396;
+
+}
+
+.tx {
+    font-weight: 800;
+}
+
+.avatars {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    background-color: burlywood;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50px;
+    margin: 5px;
+}
+
+.datarow {
+    width: 20%;
+}

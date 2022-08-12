@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+
+
+{%block content%}
+<div class="starter-template ">
+  <h1>Simple task tracker</h1>
+  <p class="lead">This application anable you to create your task and assign a tags to it.<br> Also this application
+    still inprograss in order to improve.</p>
+  <form class="form d-flex flex-column align-items-center" action="/" method="POST">
+    <div class="form-inline mb-2">
+      <button class="btn btn-outline-success m-2 my-2 my-sm-0" type="submit" name="submit">Add new task</button>
+      <input class="form-control mr-sm-2" type="text" name="task-name" placeholder="Add new task" aria-label="Search"
+        required>
+      <select class="form-select btn btn-outline-primary m-2" name="priority">
+        <option selected>Priority</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <select class="form-select btn btn-outline-primary m-2" name="status">
+        <option selected>Status</option>
+        <option value="Inprogress">Inprogress</option>
+        <option value="Pendding">Pendding</option>
+        <option value="Issue">Issue</option>
+        <option value="Complete">Complete</option>
+      </select>
+    </div>
+    <div class="form-group w-50 ">
+      <input class="form-control h-75 " type="text" name="description" placeholder="description" aria-label="Search">
+    </div>
+  </form>
+  <div class="row d-block">
+    <div class="col">
+      <div class="title">
+        <h2>Current Task</h2>
+      </div>
+    </div>
+    <div class="col tasks-form">
+
+      <div class="content"><br>
+        <table class="table">
+          <tr class="text-center">
+            <th>#</th>
+            <th>Task</th>
+            <th>Created By</th>
+            <th>Added date</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Marked</th>
+            <th>Action</th>
+          </tr>
+          {% for task in user.tasks%}
+            <tr class="text-center">
+              <td>{{loop.index}} </td>
+              <td>{{task.task_name}}</td>
+              <td>
+                <!-- the username of the creator -->
+                {{task.created_by}}
+              </td>
+              <td>{{task.date_created.date()}}</td>
+              <td class="datarow">
+                <!-- <div class="card-body mw-10">
+                  <a href="#!">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp" alt="avatar"
+                      class="img-fluid rounded-circle me-1" width="35">
+                  </a>
+                  <a href="#!">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp" alt="avatar"
+                      class="img-fluid rounded-circle me-1" width="35">
+                  </a>
+                  <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div> -->
+                {{task.description }} 
+              </td>
+              <td>
+                <h5> <span class="{{'badge  p-2 '+task.priority }}">{{task.priority}}</span></h5>
+              </td>
+              <td>
+                <div class="{{'tx '+ task.status}}">
+                  {{task.status}}
+                </div>
+              </td>
+              <td class="actions">
+                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="{{'#staticBackdrop'+task.id|string}}">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+                <div class="modal fade" id="{{'staticBackdrop'+task.id|string}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="{{'staticBackdropLabel'+task.id|string}}" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="{{'staticBackdropLabel'+task.id|string}}">Delete</h5>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete this Task <strong> {{task.id}}</strong> ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="/delete/{{task.id}}" class="btn btn-danger">
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- update button goes herer -->
+                <!-- Button trigger modal -->
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="{{'#staticBackdrop'+task.id|string}}"><i
+                    class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="{{'staticBackdrop'+task.id|string}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="{{'staticBackdropLabel'+task.id|string}}" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="{{'staticBackdropLabel'+task.id|string}}">Update</h5>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/update/{{task.id}}" method="POST">
+                          <!-- Name input -->
+                          <div class="form-outline mb-4">
+                            <input type="text" id="{{'form4Example'+task.id|string}}" name="task-name" class="form-control"
+                              value="{{task.task_name}}" />
+                          </div>
+                          <!-- Email input -->
+                          <div class="form-outline mb-4">
+                            <select class="form-select btn btn-outline-primary m-2" name="priority">
+                              <option selected>Priority</option>
+                              <option value="High">High</option>
+                              <option value="Medium">Medium</option>
+                              <option value="Low">Low</option>
+                            </select>
+                            <select class="form-select btn btn-outline-primary m-2" name="status">
+                              <option selected>Status</option>
+                              <option value="Inprogress">Inprogress</option>
+                              <option value="Pendding">Pendding</option>
+                              <option value="Issue">Issue</option>
+                              <option value="Complete">Complete</option>
+                            </select>
+                          </div>
+                          <!-- Message input -->
+                          <div class="form-outline mb-4">
+                            <textarea class="form-control" name="description" id="{{'form4Example'+task.id|string}}"
+                              rows="4">{{task.description}}</textarea>
+                          </div>
+                          <!-- Submit button -->
+                          <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          {%endfor%}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
