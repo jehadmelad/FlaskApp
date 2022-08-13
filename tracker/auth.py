@@ -51,7 +51,10 @@ def sign_up ():
 
             if user:
                 flash("This email already exist, try to login!!",category="warning")
-
+            
+            elif title == " ":
+                flash("Please select a proper title (Mr/Mrs)!", category="error")
+                return render_template("signup.html")
             # if len(fname) < 4 or type(fname) == "string" or CHARACTERS.isdigit(fname) == True:
             elif len(fname) < 3 or fname == " " or any(map(str.isdigit, fname)) == True :
                 flash("A first name have to consist of 3 latter minimum!", category="error")
