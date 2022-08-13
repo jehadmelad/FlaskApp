@@ -112,16 +112,16 @@ Home
 
                 <!-- update button goes herer -->
                 <!-- Button trigger modal -->
-                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="{{'#staticBackdrop'+task.id|string}}"><i
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="{{'#staticBackdrop'+task.id|string +'update'}}"><i
                     class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </a>
                 <!-- Modal -->
-                <div class="modal fade" id="{{'staticBackdrop'+task.id|string}}" data-bs-backdrop="static" data-bs-keyboard="false"
-                  tabindex="-1" aria-labelledby="{{'staticBackdropLabel'+task.id|string}}" aria-hidden="true">
+                <div class="modal fade" id="{{'staticBackdrop'+task.id|string +'update'}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="{{'staticBackdropLabel'+task.id|string +'update'}}" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="{{'staticBackdropLabel'+task.id|string}}">Update</h5>
+                        <h5 class="modal-title" id="{{'staticBackdropLabel'+task.id|string +'update'}}">Update</h5>
                       </div>
                       <div class="modal-body">
                         <form action="/update/{{task.id}}" method="POST">
