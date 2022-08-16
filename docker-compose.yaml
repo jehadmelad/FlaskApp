@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  tracker-app:
+    build:
+      context: .
+    container_name: tracker-application
+    ports:
+      - 5000
+    volumes:
+      - .:/app/
