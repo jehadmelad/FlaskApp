@@ -69,6 +69,6 @@ Finally, you will be able to run the server as shown:
 <figure class="video_container">
   <!-- <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png"> -->
     <video controls="true" allowfullscreen="true" >
-    <source src="./trackerApp.mp4" type="video/ogg">
+    <source src="https://github.com/jehadmelad/FlaskApp/blob/master/trackerApp.mp4" type="video/mp4">
   </video>
 </figure>
