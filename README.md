@@ -64,11 +64,9 @@ The command to enable `macvlan`:
 ```
 
 Finally, you will be able to run the server as shown:
+![](trackerApp.mp4)
 
 
-<figure class="video_container">
-  <!-- <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png"> -->
-    <video controls="true" allowfullscreen="true" >
-    <source src="https://github.com/jehadmelad/FlaskApp/blob/master/trackerApp.mp4" type="video/mp4">
-  </video>
-</figure>
+<video width="320" height="240" controls>
+  <iframe src="./trackerApp.mp4" type="video/mp4"></iframe>
+</video>
