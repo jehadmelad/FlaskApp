@@ -33,5 +33,42 @@ c:/users/hp/documents/folder/FlaskApp/:~ pip3 install -r requiremnets.txt
 Finally, open your browser and write the `localhost:5001` or your `ip addres:5001`.
 
 
+## Run by Docker:
+
+### Install Docker on Ubuntu:
+```
+~: apt-get install docker.io
+
+# Check docker if installed.
+~: docker --version
+
+```
+
+### Run the `docker-compose` within the directory `/FlaskApp`:
+```
+/FlaskApp~: docker-compose up
+```
+
+**NOTE :** In my case I created a docker `macvlan` to reach the container from my host.
+
+The command to enable `macvlan`:
+```
+~: docker network create -d macvlan --subnet <your-subnet-range>  --gateway <you-gateway> --ip-range <range-of-container-ip> -o parent=<interface-name> <name-of-network>
+
+# To get the name of interface on your PC
+~:ip addr
+.
+...
+1: ens37: ....
+...
+```
+
+Finally, you will be able to run the server as shown:
 
 
+<figure class="video_container">
+  <!-- <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png"> -->
+    <video controls="true" allowfullscreen="true" >
+    <source src="./trackerApp.mp4" type="video/ogg">
+  </video>
+</figure>
