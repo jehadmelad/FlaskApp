@@ -29,7 +29,6 @@ def login():
     return render_template("login.html",  user = current_user)
 
 
-
 @auth.route('/logout')
 def logout():
     logout_user()
@@ -64,7 +63,6 @@ def sign_up ():
                 flash("A last name have to consist of 3 latter minimum!", category="error")
                 return render_template("/signup.html")
 
-
             elif len(email) < 6 or ( "@" in email) != True or ( "." in email) != True or email == " ":
                 flash("Please enter a valid Email address!.", category="error")
                 return render_template("signup.html")
@@ -85,7 +83,6 @@ def sign_up ():
                 return render_template("/signup.html")
 
             elif password_1 != password_2 :
-            # and password_1 != "":
                 flash("Please confirm the passwords are same!", category="error")
                 return render_template("/signup.html")
 

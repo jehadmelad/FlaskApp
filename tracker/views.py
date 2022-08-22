@@ -1,9 +1,11 @@
 from curses import flash
+from dataclasses import dataclass
 from unicodedata import category
 from flask import Blueprint ,render_template, redirect,request,url_for, flash
-from flask_login import  current_user
-
-from .models import Task
+from flask_login import  current_user, login_required
+from sqlalchemy import select, engine
+from sqlalchemy.orm.session import Session
+from .models import Task, User
 from . import db
 
 
@@ -79,10 +81,12 @@ def update(id):
             flash('Please try to write a task!!', category="warning")
         elif len(update.task_name) < 5:
             flash('The task name too samll, at least 5 latters!!', category="warning")
-        elif update.priority == " " or update.priority == "Priority":
+        elif update.priority == "Priority":
             flash('Please set a priority!!', category="warning")
-        elif update.status  == " " or update.status  == "Status":
+            return redirect(url_for('views.home'))
+        elif update.status  == "Status":
             flash('Please set a current status of your!!', category="warning")
+            return redirect(url_for('views.home'))
         else:
             db.session.commit()
             flash('The Task updated successfully!!', category="sccess")
@@ -93,8 +97,22 @@ def update(id):
 
 
 
-# @views.route('/dashboard', methods=['POST','GET'])
-# @login_required #means do not show this page unless the user logged in.
-# def dashboard():
-#     pass 
+@views.route('/dashboard', methods=['GET'])
+@login_required #means do not show this page unless the user logged in.
+def dashboard():
+    # task = Task()
+    
+    if request.method == "GET":
+        total_tasks = len(db.session.query(Task).join(User).filter(Task.user_id==current_user.id).all())
+        completed   = len(db.session.query(Task).join(User).filter(Task.user_id==current_user.id).filter(Task.status=="Complete").all())
+        issued      = len(db.session.query(Task).join(User).filter(Task.user_id==current_user.id).filter(Task.status=="Issue").all())
+        pendeing    = len(db.session.query(Task).join(User).filter(Task.user_id==current_user.id).filter(Task.status=="Pendding").all())
+        inprogress  = len(db.session.query(Task).join(User).filter(Task.user_id==current_user.id).filter(Task.status=="Inprogress").all())
+
+        high        = len(db.session.query(Task).join(User).filter(Task.user_id==current_user.id).filter(Task.status!="Complete").filter(Task.priority=="High").all())
+
+        data        = { "Total Tasks": total_tasks,"Complete":completed, "Issue":issued,"Pending":pendeing,"Inprogress":inprogress}
+        return render_template('dashboard.html',  user= current_user,  data=data , high=high)
+        
+    return  render_template('dashboard.html',  user= current_user)
 

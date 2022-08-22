@@ -121,22 +121,49 @@ th {
 .Inprogress {
     color: #125B50;
 }
+.bg-Inprogress{
+    background-color: #125B50 !important;
+    color: aliceblue;
+}
+
+
 
 .Pendding {
     color: #CA6702;
 
 }
+.bg-Pending{
+    background-color: #CA6702 !important;
+    color: aliceblue;
+}
+
 
 .Issue {
     color: #AE2012;
 
 }
+.bg-Issue{
+    background-color: #AE2012 !important;
+    color: aliceblue;
+}
+
 
 .Complete {
     color: #0A9396;
 
 }
+.bg-Complete{
+    background-color: #0A9396 !important;
+    color: aliceblue;
+}
+.shadow{
+    box-shadow: 0px 0px 13px -5px #0000005e;
+}
 
+.bg-Total.Tasks {
+    background-color: #044aef;
+    color: aliceblue;
+}
 .tx {
     font-weight: 800;
 }
