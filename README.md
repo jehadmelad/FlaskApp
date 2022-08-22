@@ -64,9 +64,6 @@ The command to enable `macvlan`:
 ```
 
 Finally, you will be able to run the server as shown:
-![](trackerApp.mp4)
 
 
-<video width="320" height="240" controls>
-  <iframe src="./trackerApp.mp4" type="video/mp4"></iframe>
-</video>
+
