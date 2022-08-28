@@ -1,4 +1,5 @@
 # Simple Task tracker.
+
 ## The application is set with Authentication and API features.
 * Log-in.
 * Log-out.
