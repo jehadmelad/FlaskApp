@@ -22,8 +22,6 @@ class User(db.Model, UserMixin):
     tasks           = db.relationship('Task')
 
 
-
-
 class Task(db.Model):
     id              = db.Column(db.Integer, primary_key=True)
     task_name       = db.Column(db.String(200))

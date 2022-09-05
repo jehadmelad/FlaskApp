@@ -1,5 +1,6 @@
 from curses import flash
 from dataclasses import dataclass
+import datetime
 from unicodedata import category
 from flask import Blueprint ,render_template, redirect,request,url_for, flash
 from flask_login import  current_user, login_required
@@ -15,7 +16,7 @@ views      = Blueprint("views", __name__)
 
 @views.route('/', methods=['GET','POST'])
 def home():
-    
+
     if request.method == 'POST':
         added_task               =   request.form.get('task-name')
         added_description        =   request.form.get('description')
@@ -54,8 +55,6 @@ def home():
 @views.route('/delete/<int:id>')
 def delete(id):
     delete_task_by_id = Task.query.get_or_404(id)
-    print(delete_task_by_id)
-
     try:
         db.session.delete(delete_task_by_id)
         db.session.commit()
@@ -67,16 +66,34 @@ def delete(id):
         redirect(url_for('views.home'))
 
 
+@views.route('/complete/<int:id>', methods=['POST','GET'])
+def complete(id):
+
+    update   = Task.query.get_or_404(id)
+    if  request.method        == "POST":
+        update.status         =  request.form.get('done')
+        update.date_created   =  datetime.datetime.now()
+        if update.status  != "Complete":
+            flash('You are unable to marke this task as COMPLETED...Try later!!', category="warning")
+            return redirect(url_for('views.home'))
+        else:
+            db.session.commit()
+            flash('The Task marked as Completed!!', category="sccess")
+            return redirect(url_for('views.home'))
+    return  render_template('home.html', user= current_user )
+    
+
 @views.route('/update/<int:id>', methods=['POST','GET'])
 def update(id):
 
     update   = Task.query.get_or_404(id)
-    print(update)
     if  request.method        == "POST":
         update.task_name      =  request.form.get('task-name')
         update.description    =  request.form.get('description')
         update.priority       =  request.form.get('priority')
         update.status         =  request.form.get('status')
+        update.date_created   =  datetime.datetime.now()
+        
         if update.task_name   == " ":
             flash('Please try to write a task!!', category="warning")
         elif len(update.task_name) < 5:
