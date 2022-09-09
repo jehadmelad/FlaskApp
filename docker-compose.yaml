@@ -4,29 +4,29 @@ services:
   app:
     build:
       context: .
-    
-    # networks:
-    #   - flaskapp_net
     container_name: my-app
     expose:
       - 5000
+    networks:
+      - net
     
     volumes:
       - .:/app/
 
-# networks:
-#   default:
-#     name: net
-#     external: true
 
-# networks:
-#   net:
-#     driver: macvlan
-#     # enable_ipv6: true                   # if needed
-#     driver_opts:
-#       parent: ens33
-#     ipam:
-#       config:
-#         - subnet: 192.168.0.0/24
-#           gateway: 192.168.0.1
-#           ip_range: 192.168.0.8/30
+networks:
+  net:
+    driver: macvlan
+    # enable_ipv6: true                   # if needed
+    driver_opts:
+    # The parent needs to match your interface name
+      parent: ens33
+    ipam:
+      config:
+        - subnet: 192.168.226.0/24
+          gateway: 192.168.226.2
+          ip_range: 192.168.226.8/30
+  default:
+      name: net
+      external: true
+

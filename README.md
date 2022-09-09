@@ -54,6 +54,8 @@ Finally, open your browser and write the `localhost:5001` or your `ip addres:500
 
 The command to enable `macvlan`:
 ```
+
+# The ip of macvlan needs to be same as the parent interface
 ~: docker network create -d macvlan --subnet <your-subnet-range>  --gateway <you-gateway> --ip-range <range-of-container-ip> -o parent=<interface-name> <name-of-network>
 
 # To get the name of interface on your PC
