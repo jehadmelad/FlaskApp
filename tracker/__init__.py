@@ -29,7 +29,20 @@ def create_app():
 
     from .models import User, Task
 
-    create_db(app)
+    
+
+#  New version of sqlalcheny has changed by using this way instead of:
+#       
+#   create_db(app)
+# 
+# check if there is a bd within the folder.
+# def create_db(app):
+#     if not path.exists('tracker/'+DB_NAME):
+#         db.create_all()
+    with app.app_context():
+        db.create_all()
+        print("Database  ( "+ DB_NAME +" ) successfuly created!")
+        
 
     login_manager                =   LoginManager()
     login_manager.login_view     = 'auth.login'
@@ -43,8 +56,3 @@ def create_app():
 
     return app
 
-# check if there is a bd within the folder.
-def create_db(app):
-    if not path.exists('tracker/'+DB_NAME):
-        db.create_all(app=app)
-        print("Database  ( "+DB_NAME+" ) successfuly created!")

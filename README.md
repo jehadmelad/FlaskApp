@@ -9,6 +9,24 @@
 
 ## Requirements:
 
+```
+Package          Version
+---------------- -------
+click            8.1.3
+Flask            2.2.2
+Flask-Login      0.6.2
+Flask-SQLAlchemy 3.0.2
+greenlet         2.0.0
+itsdangerous     2.1.2
+Jinja2           3.1.2
+MarkupSafe       2.1.1
+pip              22.3
+setuptools       63.2.0
+SQLAlchemy       1.4.42
+Werkzeug         2.2.2
+wheel            0.37.1
+```
+
 * Python +3.x.x.
 
 ## Run the application.
@@ -50,7 +68,8 @@ Finally, open your browser and write the `localhost:5001` or your `ip addres:500
 /FlaskApp~: docker-compose up
 ```
 
-**NOTE :** In my case I created a docker `macvlan` to reach the container from my host.
+## Issues: NOTE :
+In my case, I created a docker `macvlan` to reach the container from my host.
 
 The command to enable `macvlan`:
 ```

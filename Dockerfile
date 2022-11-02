@@ -1,9 +1,11 @@
-FROM python:3.6-stretch
+FROM python:3.10-alpine
 
 
 WORKDIR /app/
 
 COPY . .
+
+# RUN apk add --no-cache gcc musl-dev linux-headers
 
 RUN apk update; \
     # pip install Cmake; \
@@ -11,7 +13,7 @@ RUN apk update; \
     # /usr/local/bin/python -m pip install --upgrade pip; \
     pip3 install -r requirements.txt
 
-# ENTRYPOINT [ "python3" ]
+ENTRYPOINT [ "python3" ]
 
 CMD ["app.py" ]
 

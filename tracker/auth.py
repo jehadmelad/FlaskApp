@@ -1,8 +1,11 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import re
+
+import sqlalchemy
 from . import db
-from .models import User
+from .models import Task, User
 from werkzeug.security import check_password_hash, generate_password_hash
+from sqlalchemy import MetaData, engine_from_config
 
 from flask_login import login_required, login_user, logout_user, current_user
 
@@ -14,9 +17,10 @@ def login():
     if request.method =="POST":
         email           = request.form.get("email")
         password        = request.form.get('1st-password')
+        # print("#######################################################################################"+db.session.query(User))
 
+        # try:
         user            = User.query.filter_by(email=email).first()
-
         if user:
             if check_password_hash(user.password, password):
                 flash("You are logged in. ", category="success")
@@ -25,7 +29,9 @@ def login():
             else:
                 flash("Wrong password, try again.",category="warning")
         else:
-            flash("You are not registred!!", category="warning")    
+            flash("You are not registred!!", category="warning") 
+        # except sqlalchemy.exc.OperationalError as e:
+            #    flash("You are not registred!!", category="warning") 
     return render_template("login.html",  user = current_user)
 
 
